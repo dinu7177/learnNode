@@ -18,7 +18,7 @@ const menuRoutes = require('./routes/menuRoutes');
 app.use('/devotee', personRoutes);
 app.use('/menu', menuRoutes);
  
-
+// add for
 app.listen(3000, () => {
     console.log("server is listening")
 });
