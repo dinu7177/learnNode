@@ -12,7 +12,7 @@ const logRequest = (req, res, next) => {
     next(); // Move to next phase
 };
 
-app.get('/', function(req,res){
+app.get('/',logRequest, function(req,res){
     res.send("welcome to Annadan")
 });
 
