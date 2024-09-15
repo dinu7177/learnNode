@@ -6,6 +6,11 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+// Middleware Function
+const logRequest = (req, res, next) => {
+    console.log(`${new Date().toLocaleDateString()} Request made to : ${req.originalUrl}`);
+    next(); // Move to next phase
+};
 
 app.get('/', function(req,res){
     res.send("welcome to Annadan")
