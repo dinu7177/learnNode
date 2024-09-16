@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const db = require('./db');
 require('dotenv').config();
+const passport = require('./auth');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -12,7 +13,13 @@ const logRequest = (req, res, next) => {
     next(); // Move to next phase
 };
 
-app.get('/',logRequest, function(req,res){
+app.use(logRequest);
+
+// Authentication function
+app.use(passport.initialize());
+const localAuthMiddleware = passport.authenticate('local', {session: false});
+
+app.get('/',localAuthMiddleware, function(req,res){
     res.send("welcome to Annadan")
 });
 
